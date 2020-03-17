@@ -25,7 +25,9 @@ gem 'devise'
 gem 'omniauth-facebook'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv'
+gem 'pry'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
