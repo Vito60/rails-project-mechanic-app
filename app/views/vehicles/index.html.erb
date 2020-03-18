@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vehicles</title>
+</head>
+<div>
+<h3>Here is a list of your vehicles.</h3>
+</div>
+<body>
+    <ul>
+    <%@vehicles.each do |vehicle|%>
+        <li><%=link_to "#{vehicle.combine_make_model}", user_vehicle_path(current_user, vehicle)%></li>
+        <% end %>
+    </ul>
+</body>
+</html>

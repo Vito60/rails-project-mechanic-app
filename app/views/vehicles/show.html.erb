@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%=@vehicle.combine_make_model%></title>
+    <h3><%=@vehicle.combine_make_model%></h3>
+</head>
+<body>
+<ul>
+    <%@vehicle_attributes.each do |attr_name, attr_value|%>
+          <li><%="#{attr_name}: #{attr_value}"%></li>
+    <% end %>
+</ul>
+    <div>
+    <%=link_to "Your Vehicles Mechanic", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<h4>Customers</h4>
+<ul>
+<%@customers.each do |customer|%>
+   <li><%=link_to "#{customer.first_name} #{customer.last_name}", user_customer_cars_path(current_user, customer) %></li> 
+   <% end %>
+</ul>

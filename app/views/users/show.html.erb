@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h4><%=@user.email%>'s Home Page</h4>
+<div>
+<ul>
+<li><%=link_to "Click here to view your cars", user_vehicles_path(current_user)%></li>
+</ul>
+</div>
+    
+</body>
+</html>
