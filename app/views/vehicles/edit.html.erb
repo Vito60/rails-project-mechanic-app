@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Vehicle From</title>
-    <h3>New Vehicle Form</h3>
-</head>
-<body>
-<%unless @vehicle_errors == nil%>
-        <%@vehicle_errors.each do |error|%>
-            <li><%=error%></li>
-        <% end %>
-    <% end %>
-<%=form_for @vehicle, :url => user_vehicles_path(current_user) do |f|%>
+<%=form_for @vehicle, :url => user_vehicle_path(current_user, @vehicle)  do |f|%>
     <%=f.hidden_field :user_id%>
     <div>
     <%=f.label :make%>
@@ -61,18 +46,8 @@
         <%=mechanic_fields.text_field :shop_name%>
     </div>
         <% end %>
+    </ul>
     </div>
-    <ul>
-    <%unless @mechanic_errors == nil%>
-        <%@mechanic_errors.each do |error|%>
-            <li><%=error%></li>
-        <% end %>
-    <% end %>
-    </ul>
-    </ul>
     <br>
-    <%=f.submit%>
+    <%=f.submit "Update Vehicle"%>
 <% end %>
-    
-</body>
-</html>
