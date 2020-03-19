@@ -16,5 +16,9 @@
     <div>
     <%=link_to "Your Vehicles Mechanic", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%>
     </div>
+    <br>
+    <div>
+    <%=link_to "Remove This Vehicle", user_vehicle_path(current_user, @vehicle), :confirm => 'Are you sure you want to delete your account?', :method => :delete%>
+    </div>
 </body>
 </html>

@@ -1,0 +1,3 @@
+<% if user_signed_in? %>
+<%= link_to 'Delete Account', user_registration_path, :confirm => 'Are you sure you want to delete your account?', :method => :delete %>
+ <% end %>

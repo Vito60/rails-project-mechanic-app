@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Vehicle From</title>
+    <h3>New Vehicle Form</h3>
+</head>
+<body>
+<%=form_for @vehicle, :url => user_vehicles_path(current_user) do |f|%>
+    <%=f.hidden_field :user_id%>
+    <div>
+    <%=f.label :make%>
+    <%=f.text_field :make%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :model%>
+    <%=f.text_field :model%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :mileage%>
+    <%=f.text_field :mileage%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :year%>
+    <%=f.text_field :year%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :mechanic%>
+    <%=f.select :mechanic_id, options_from_collection_for_select(Mechanic.all, :id, :first_name)%>
+    </div>
+    <%=f.submit%>
+<% end %>
+    
+</body>
+</html>
