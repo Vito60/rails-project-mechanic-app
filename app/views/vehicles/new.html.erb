@@ -32,8 +32,33 @@
     <br>
     <div>
     <%=f.label :mechanic%>
-    <%=f.select :mechanic_id, options_from_collection_for_select(Mechanic.all, :id, :first_name)%>
+    <%=f.select :mechanic_id, options_from_collection_for_select(current_user.mechanics.all.uniq, :id, :first_and_last_name), :include_blank => true%>
     </div>
+    <br>
+    <div>
+    <ul>
+    <h4>If your mechanic is not on the list please add them</h4>
+    <%= f.fields_for :mechanic, Mechanic.new do |mechanic_fields|%>
+    <div>
+        <%=mechanic_fields.label :first_name%>
+        <%=mechanic_fields.text_field :first_name%>
+    </div>
+    <div>
+        <%=mechanic_fields.label :last_name%>
+        <%=mechanic_fields.text_field :last_name%>
+    </div>
+    <div>
+        <%=mechanic_fields.label :phone_number%>
+        <%=mechanic_fields.text_field :phone_number%>
+    </div>
+    <div>
+        <%=mechanic_fields.label :shop_name%>
+        <%=mechanic_fields.text_field :shop_name%>
+    </div>
+        <% end %>
+    </ul>
+    </div>
+    <br>
     <%=f.submit%>
 <% end %>
     
