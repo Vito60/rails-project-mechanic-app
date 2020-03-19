@@ -1,6 +1,6 @@
 class Vehicle < ApplicationRecord
     validates :make, presence: true
-    validate :model, presence: true
+    validates :model, presence: true
     validates :mileage, presence: true 
     validates :year, presence: true 
     belongs_to :user
