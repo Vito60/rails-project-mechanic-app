@@ -24,9 +24,30 @@ class VehiclesController < ApplicationController
         elsif @vehicle.save
             redirect_to user_vehicles_path(current_user)
         else
+            @vehicle_errors = @vehicle.errors.full_messages
+            @mechanic_errors = @mechanic.errors.full_messages
             render 'vehicles/new'
         end
 
+    end
+
+    def edit
+        @vehicle = Vehicle.find_by_id(params["id"])
+    end
+
+    def update
+        @vehicle = Vehicle.find_by_id(params["id"])
+        @mechanic = Mechanic.new(vehicle_params["mechanic_attributes"])
+        if @mechanic.save
+            @vehicle.update(vehicle_params)
+            @vehicle.mechanic_id = @mechanic.id 
+            @vehicle.save
+            redirect_to user_vehicles_path(current_user)
+        elsif @vehicle.update(vehicle_params)
+            redirect_to user_vehicle_path(current_user)
+        else
+            redirect_to edit_user_vehicle_path(current_user, @vehicle)
+        end
     end
 
     def destroy
