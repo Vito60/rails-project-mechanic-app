@@ -1,6 +1,15 @@
 class Vehicle < ApplicationRecord
+    validates :make, presence: true
+    validate :model, presence: true
+    validates :mileage, presence: true 
+    validates :year, presence: true 
     belongs_to :user
     belongs_to :mechanic
+    accepts_nested_attributes_for :mechanic
+
+    def mechanic_attributes=(mechanic_attributes)
+        mechanic = Mechanic.find_or_create_by(mechanic_attributes)
+    end
 
     def combine_make_model
         self.make + " " + self.model
