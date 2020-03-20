@@ -7,6 +7,9 @@ class Vehicle < ApplicationRecord
     belongs_to :mechanic
     accepts_nested_attributes_for :mechanic
 
+    scope :by_make_x, ->(make) {where("make = ?", make)}
+    scope :by_user, ->(user_id) {where("user_id = ?", user_id)}
+
     def mechanic_attributes=(mechanic_attributes)
         mechanic = Mechanic.find_or_create_by(mechanic_attributes)
     end

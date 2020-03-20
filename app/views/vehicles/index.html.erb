@@ -16,6 +16,9 @@
         <% end %>
     </ul>
 </body>
+<%Vehicle.by_make_x("Toyota").by_user(current_user.id).each do |vehicle|%>
+<%=vehicle.model%>
+<% end %>
 <footer>
     <%=link_to "Add a vehicle.", new_user_vehicle_path(current_user)%>
 </footer>
