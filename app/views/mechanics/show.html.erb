@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%=@mechanic.first_name%></title>
-    <h3>Your Vehicles Mechanic</h3>
-</head>
-<body>
-<ul>
-     <%@mechanic_attributes.each do |attr_name, attr_value|%>
-          <li><%="#{attr_name}: #{attr_value}"%></li>
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">Your Vehicles Mechanic</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <%@mechanic_attributes.each do |attr_name, attr_value|%>
+          <h1><%="#{attr_name.gsub(/[_]/, ' ')}"%></h1>
+                <h1><%="#{attr_value}"%></h1>
     <% end %>
-</ul>
-
-</body>
-</html>
+        </h2>
+      <h4><%=link_to "edit mechanic", edit_user_vehicle_mechanic_path(current_user, params["vehicle_id"],params["id"])%></h4>
+      </div>
+      <br>
+    </div>
+  </body>
