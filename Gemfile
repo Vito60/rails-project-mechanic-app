@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap-sass'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 gem 'dotenv-rails', groups: [:development, :test]
