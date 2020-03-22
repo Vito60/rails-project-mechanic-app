@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-    before_action :authenticate_user_to_vehicle, only: [:show, :destroy]
+    before_action :authenticate_user_to_vehicle, only: [:show, :destroy, :update, :edit]
     
     def index
         @vehicles = current_user.vehicles
@@ -17,40 +17,40 @@ class VehiclesController < ApplicationController
     def create
         @vehicle = Vehicle.new(vehicle_params)
         find_or_create_mechanic_for_create_action
-        if @mechanic.save
-            @vehicle.mechanic_id = @mechanic.id 
-            @vehicle.save
+        @vehicle.mechanic_id = @mechanic.id 
+        if @vehicle.save && @mechanic.save
             redirect_to user_vehicles_path(current_user)
+        elsif @mechanic.save 
+            @vehicle.mechanic_id = @mechanic.id 
+            if @vehicle.save 
+                redirect_to user_vehicles_path(current_user)
+            else  
+                @vehicle_errors = @vehicle.errors.full_messages
+                @mechanic_errors = @mechanic.errors.full_messages
+                render 'vehicles/new'
+            end
         else
             @vehicle_errors = @vehicle.errors.full_messages
             @mechanic_errors = @mechanic.errors.full_messages
             render 'vehicles/new'
         end
-
     end
 
-    def edit
+    def edit 
         @vehicle = Vehicle.find_by_id(params["id"])
         @mechanic = @vehicle.mechanic
     end
-
-    def update
+ 
+   def update
         @vehicle = Vehicle.find_by_id(params["id"])
-        find_or_create_mechanic_for_update_action
-        if vehicle_params["mechanic_id"] == ""
-            @mechanic.update(vehicle_params["mechanic_attributes"])
-            @vehicle.update(vehicle_params) 
+        @mechanic = @vehicle.mechanic 
+        if @vehicle.update(vehicle_params)
             redirect_to user_vehicles_path(current_user)
-        elsif vehicle_params != ""
-            @vehicle.update(vehicle_params)
-            @vehicle.mechanic.update(vehicle_params["mechanic_attributes"])
-            redirect_to user_vehicle_path(current_user)
         else
-            @errors = @vehicle.errors.full_messages
-            @errors = @mechanic.errors.full_messages
-            redirect_to edit_user_vehicles_path(current_user, @vehicle)
+            @vehicle_errors = @vehicle.errors.full_messages
+            render 'vehicles/edit'
         end
-    end
+   end
 
     def destroy
         vehicle = Vehicle.find_by_id(params["id"])
@@ -70,10 +70,14 @@ class VehiclesController < ApplicationController
 
     def find_or_create_mechanic_for_update_action
         if @mechanic = Mechanic.find_by_id(vehicle_params["mechanic_id"])
-            @mechanic 
+            @mechanic.update(vehicle_params["mechanic_attributes"])
         else 
             @mechanic = @vehicle.mechanic
         end
+    end
+
+    def vehicle_mechanic_errors_for_update_action
+        @vehicle.update(vehicle_params) || @mechanic.update(vehicle_params["mechanic_attributes"])
     end
 
 
@@ -89,3 +93,4 @@ class VehiclesController < ApplicationController
 
 
 end
+
