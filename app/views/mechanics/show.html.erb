@@ -1,15 +1,23 @@
 <body class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
-        <h1 class="mx-auto my-0 text-uppercase">Your Vehicles Mechanic</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">
+        <h1 class="mx-auto my-0 text-uppercase"></h1>
+        <br>
+        <br>
+        <br>
+        <br>
     <%@mechanic_attributes.each do |attr_name, attr_value|%>
-          <h1><%="#{attr_name.gsub(/[_]/, ' ')}"%></h1>
-                <h1><%="#{attr_value}"%></h1>
+   
+          <h1><%="#{attr_name.gsub(/[_]/, ' ').upcase}"%></h1>
+          <h1><%="#{attr_value}"%></h1>
     <% end %>
         </h2>
-      <h4><%=link_to "edit mechanic", edit_user_vehicle_mechanic_path(current_user, params["vehicle_id"],params["id"])%></h4>
+        <h4><%=link_to "edit mechanic", edit_user_vehicle_mechanic_path(current_user, params["vehicle_id"],params["id"])%></h4>
+        <br>
+        <br>
       </div>
-      <br>
+     
     </div>
+    <br>
   </body>

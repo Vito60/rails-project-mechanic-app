@@ -2,7 +2,7 @@ class VehiclesController < ApplicationController
     before_action :authenticate_user_to_vehicle, only: [:show, :destroy, :update, :edit]
     
     def index
-        @vehicles = current_user.vehicles
+        @vehicles = Vehicle.by_user(current_user.id)
     end
     
     def show
