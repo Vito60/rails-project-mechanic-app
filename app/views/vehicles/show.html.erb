@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%=@vehicle.combine_make_model%></title>
-    <h3><%=@vehicle.combine_make_model%></h3>
-</head>
-<body>
-<ul>
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase"><%=@vehicle.combine_make_model%></h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">
     <%@vehicle_attributes.each do |attr_name, attr_value|%>
-          <li><%="#{attr_name}: #{attr_value}"%></li>
-    <% end %>
-</ul>
-    <div>
-    <%=link_to "Your Vehicles Mechanic", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%>
-    </div>
+          <h1><%="#{attr_name}: #{attr_value}"%></h1>
+    <% end %> 
+        </h2>
     <br>
-    <div>
-    <%=link_to "Edit This Vehicle", edit_user_vehicle_path(current_user, @vehicle)%>
-    </div>
+    <h4><%=link_to "YOUR VEHICLES MECHANIC", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%></h4>
     <br>
-    <div>
-    <%=link_to "Remove This Vehicle", user_vehicle_path(current_user, @vehicle), :confirm => 'Are you sure you want to remove this vehicle?', :method => :delete%>
+    <h4><%=link_to "EDIT THIS VEHICLE", edit_user_vehicle_path(current_user, @vehicle)%></h4>
+    <br>
+    <h4><%=link_to "REMOVE THIS VEHICLE", user_vehicle_path(current_user, @vehicle), :method => :delete%></h4>
+      </div>
     </div>
-</body>
-</html>
+  </body>

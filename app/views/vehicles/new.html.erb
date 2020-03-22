@@ -1,44 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New Vehicle From</title>
-    <h3>New Vehicle Form</h3>
-</head>
-<body>
-<%unless @vehicle_errors == nil%>
-        <%@vehicle_errors.each do |error|%>
-            <li><%=error%></li>
-        <% end %>
-    <% end %>
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">NEW VEHICLE FORM</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
+
 <%=form_for @vehicle, :url => user_vehicles_path(current_user) do |f|%>
     <%=f.hidden_field :user_id%>
-    <div>
     <%=f.label :make%>
     <%=f.text_field :make%>
-    </div>
     <br>
-    <div>
     <%=f.label :model%>
     <%=f.text_field :model%>
-    </div>
     <br>
-    <div>
     <%=f.label :mileage%>
     <%=f.text_field :mileage%>
-    </div>
     <br>
-    <div>
     <%=f.label :year%>
     <%=f.text_field :year%>
-    </div>
     <br>
-    <div>
     <%=f.label :mechanic%>
     <%=f.select :mechanic_id, options_from_collection_for_select(current_user.mechanics.all.uniq, :id, :first_and_last_name), :include_blank => true%>
-    </div>
     <br>
     <div>
     <ul>
@@ -62,17 +43,29 @@
     </div>
         <% end %>
     </div>
-    <ul>
-    <%unless @mechanic_errors == nil%>
-        <%@mechanic_errors.each do |error|%>
-            <li><%=error%></li>
-        <% end %>
-    <% end %>
-    </ul>
     </ul>
     <br>
     <%=f.submit%>
 <% end %>
+<br>
+<div>
+    <%unless @vehicle_errors == nil%>
+        <%@vehicle_errors.each do |error|%>
+        <%if error == "Mechanic must exist"%>
+            <h6><li>Mechanic must be selected or created in the form</li></h6>
+        <% else %>
+            <h6><li>Vehicle's <%=error%></li></h6>
+        <% end %>
+        <% end %>
+    <% end %>
+
+     <%unless @mechanic_errors == nil%>
+        <%@mechanic_errors.each do |error|%>
+            <h6><li>Mechanic's <%=error%></li></h6>
+        <% end %>
+    <% end %>
+</div>
     
-</body>
-</html>
+      </div>
+    </div>
+  </body>
