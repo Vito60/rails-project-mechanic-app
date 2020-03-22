@@ -1,19 +1,21 @@
 <body class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">YOUR VEHICE</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">
-        <h1 class="mx-auto my-0 text-uppercase"><%=@vehicle.combine_make_model%></h1>
-        <br>
-    <%@vehicle_attributes.each do |attr_name, attr_value|%>
-          <h1><%="#{attr_name.upcase}: #{attr_value}"%></h1>
+   <%@vehicle_attributes.each do |attr_name, attr_value|%>
+          <h4><%="#{attr_name.upcase}: #{attr_value}"%></h4>
     <% end %> 
+        <br>
+    <br>
+    <h3><%=link_to "YOUR VEHICLES MECHANIC", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%></h3>
+    <br>
+    <h3><%=link_to "EDIT THIS VEHICLE", edit_user_vehicle_path(current_user, @vehicle)%></h3>
+    <br>
+    <h3><%=link_to "REMOVE THIS VEHICLE", user_vehicle_path(current_user, @vehicle), :method => :delete%></h3>
+        
         </h2>
-    <br>
-    <h4><%=link_to "YOUR VEHICLES MECHANIC", user_vehicle_mechanic_path(current_user,@vehicle, @vehicle.mechanic)%></h4>
-    <br>
-    <h4><%=link_to "EDIT THIS VEHICLE", edit_user_vehicle_path(current_user, @vehicle)%></h4>
-    <br>
-    <h4><%=link_to "REMOVE THIS VEHICLE", user_vehicle_path(current_user, @vehicle), :method => :delete%></h4>
       </div>
     </div>
   </body>
+
