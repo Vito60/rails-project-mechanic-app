@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vehicles</title>
-</head>
-<div>
-<h3>Here is a list of your vehicles.</h3>
-</div>
-<body>
-    <ul>
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">YOUR VEHICES</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">
     <%@vehicles.each do |vehicle|%>
-        <li><%=link_to "#{vehicle.combine_make_model}", user_vehicle_path(current_user, vehicle)%></li>
+        <h4><%=link_to "#{vehicle.combine_make_model}", user_vehicle_path(current_user, vehicle)%></h4>
         <% end %>
-    </ul>
-</body>
-<footer>
-    <%=link_to "Add a vehicle.", new_user_vehicle_path(current_user)%>
-</footer>
-</html>
+        <br>
+    <h3><%=link_to "ADD A VEHICLE", new_user_vehicle_path(current_user)%></h3>
+        
+        
+        </h2>
+      </div>
+    </div>
+  </body>

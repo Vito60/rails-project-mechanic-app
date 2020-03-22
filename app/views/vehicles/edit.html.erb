@@ -1,5 +1,11 @@
-<%=form_for @vehicle, :url => user_vehicle_path(current_user, @vehicle)  do |f|%>
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">EDIT YOUR VEHICLE</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
+    <%=form_for @vehicle, :url => user_vehicle_path(current_user, @vehicle)  do |f|%>
     <%=f.hidden_field :user_id%>
+    <%=f.hidden_field :mechanic_id%>
     <div>
     <%=f.label :make%>
     <%=f.text_field :make%>
@@ -22,32 +28,29 @@
     <br>
     <div>
     <%=f.label :mechanic%>
-    <%=f.select :mechanic_id, options_from_collection_for_select(current_user.mechanics.all.uniq, :id, :first_and_last_name), :include_blank => true%>
+    <%=f.select :mechanic_id, options_from_collection_for_select(current_user.mechanics.all.uniq, :id, :first_and_last_name)%>
     </div>
     <br>
-    <div>
-    <ul>
-    <h4>Update Mechanic With This Form</h4>
-    <%= f.fields_for :mechanic, @mechanic do |mechanic_fields|%>
-    <div>
-        <%=mechanic_fields.label :first_name%>
-        <%=mechanic_fields.text_field :first_name%>
-    </div>
-    <div>
-        <%=mechanic_fields.label :last_name%>
-        <%=mechanic_fields.text_field :last_name%>
-    </div>
-    <div>
-        <%=mechanic_fields.label :phone_number%>
-        <%=mechanic_fields.text_field :phone_number%>
-    </div>
-    <div>
-        <%=mechanic_fields.label :shop_name%>
-        <%=mechanic_fields.text_field :shop_name%>
-    </div>
-        <% end %>
-    </ul>
-    </div>
-    <br>
-    <%=f.submit "Update Vehicle/mechanic"%>
+    <%=f.submit "Update Vehicle"%>
 <% end %>
+    <br>
+    <%unless @vehicle_errors == nil%>
+        <%@vehicle_errors.each do |error|%>
+        <%if error == "Mechanic must exist"%>
+            <h6><li>Mechanic must be selected or created in the form</li></h6>
+        <% else %>
+            <h6><li>Vehicle's <%=error%></li></h6>
+        <% end %>
+        <% end %>
+    <% end %>
+      </ul>
+      </div>
+      <div>
+</div>
+      <ul>
+    </div>
+  </body>
+
+
+
+
