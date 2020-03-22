@@ -1,5 +1,8 @@
-<h2>Sign up</h2>
-
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">SIGNUP</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -27,3 +30,8 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+  </div>
+    </div>
+  </body>
+
