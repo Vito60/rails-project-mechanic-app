@@ -10,12 +10,12 @@
 <h4><%=@user.email%>'s Home Page</h4>
 <div>
 <ul>
-<li><%=link_to "Click here to view your cars", user_vehicles_path(current_user)%></li>
+<%=link_to "Click here to view your cars", user_vehicles_path(current_user)%>
 </ul>
 </div>
     
 </body>
 <footer>
-<%=render 'layouts/footer'%>
+<%= link_to 'Edit Your Account', edit_user_registration_path%>
 </footer>
 </html>

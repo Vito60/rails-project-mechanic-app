@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_03_17_210627) do
     t.string "first_name"
     t.string "last_name"
     t.string "shop_name"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2020_03_17_210627) do
   create_table "vehicles", force: :cascade do |t|
     t.string "make"
     t.string "model"
-    t.integer "year"
-    t.integer "mileage"
+    t.string "year"
+    t.string "mileage"
     t.integer "user_id"
     t.integer "mechanic_id"
     t.datetime "created_at", precision: 6, null: false

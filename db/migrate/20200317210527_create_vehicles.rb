@@ -3,8 +3,8 @@ class CreateVehicles < ActiveRecord::Migration[6.0]
     create_table :vehicles do |t|
       t.string :make
       t.string :model
-      t.integer :year
-      t.integer :mileage
+      t.string :year
+      t.string :mileage
       t.integer :user_id
       t.integer :mechanic_id
 

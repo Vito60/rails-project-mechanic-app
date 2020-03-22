@@ -1,11 +1,14 @@
+<div class="nav">
 <ul>
     <% if !user_signed_in? %>
-        <!-- not signed in links -->
-        <li><%= link_to "Signup", new_user_registration_path %></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
+        
+        <%= link_to "Signup", new_user_registration_path %>
+        <br>
+        <%= link_to "Login", new_user_session_path %>
     <% else %>
-        <!-- signed in links -->
-        <li><%= link_to "Home Page", user_path(current_user) %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <%= link_to "Home Page", user_path(current_user) %>
+    <br>
+       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% end %>
 </ul>
+</div>

@@ -16,12 +16,10 @@ class VehiclesController < ApplicationController
 
     def create
         @vehicle = Vehicle.new(vehicle_params)
-        @mechanic = Mechanic.new(vehicle_params["mechanic_attributes"])
+        find_or_create_mechanic_for_create_action
         if @mechanic.save
             @vehicle.mechanic_id = @mechanic.id 
             @vehicle.save
-            redirect_to user_vehicles_path(current_user)
-        elsif @vehicle.save
             redirect_to user_vehicles_path(current_user)
         else
             @vehicle_errors = @vehicle.errors.full_messages
@@ -33,20 +31,24 @@ class VehiclesController < ApplicationController
 
     def edit
         @vehicle = Vehicle.find_by_id(params["id"])
+        @mechanic = @vehicle.mechanic
     end
 
     def update
         @vehicle = Vehicle.find_by_id(params["id"])
-        @mechanic = Mechanic.new(vehicle_params["mechanic_attributes"])
-        if @mechanic.save
-            @vehicle.update(vehicle_params)
-            @vehicle.mechanic_id = @mechanic.id 
-            @vehicle.save
+        find_or_create_mechanic_for_update_action
+        if vehicle_params["mechanic_id"] == ""
+            @mechanic.update(vehicle_params["mechanic_attributes"])
+            @vehicle.update(vehicle_params) 
             redirect_to user_vehicles_path(current_user)
-        elsif @vehicle.update(vehicle_params)
+        elsif vehicle_params != ""
+            @vehicle.update(vehicle_params)
+            @vehicle.mechanic.update(vehicle_params["mechanic_attributes"])
             redirect_to user_vehicle_path(current_user)
         else
-            redirect_to edit_user_vehicle_path(current_user, @vehicle)
+            @errors = @vehicle.errors.full_messages
+            @errors = @mechanic.errors.full_messages
+            redirect_to edit_user_vehicles_path(current_user, @vehicle)
         end
     end
 
@@ -57,6 +59,22 @@ class VehiclesController < ApplicationController
     end
 
     private 
+
+    def find_or_create_mechanic_for_create_action
+        if @mechanic = Mechanic.find_by_id(vehicle_params["mechanic_id"])
+            @mechanic = @mechanic
+        else
+            @mechanic = Mechanic.new(vehicle_params["mechanic_attributes"])
+        end
+    end
+
+    def find_or_create_mechanic_for_update_action
+        if @mechanic = Mechanic.find_by_id(vehicle_params["mechanic_id"])
+            @mechanic 
+        else 
+            @mechanic = @vehicle.mechanic
+        end
+    end
 
 
     def authenticate_user_to_vehicle

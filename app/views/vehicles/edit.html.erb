@@ -27,8 +27,8 @@
     <br>
     <div>
     <ul>
-    <h4>If your mechanic is not on the list please add them</h4>
-    <%= f.fields_for :mechanic, Mechanic.new do |mechanic_fields|%>
+    <h4>Update Mechanic With This Form</h4>
+    <%= f.fields_for :mechanic, @mechanic do |mechanic_fields|%>
     <div>
         <%=mechanic_fields.label :first_name%>
         <%=mechanic_fields.text_field :first_name%>
@@ -49,5 +49,5 @@
     </ul>
     </div>
     <br>
-    <%=f.submit "Update Vehicle"%>
+    <%=f.submit "Update Vehicle/mechanic"%>
 <% end %>
