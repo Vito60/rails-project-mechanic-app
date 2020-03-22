@@ -1,0 +1,43 @@
+<body class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+      <div class="mx-auto text-center">
+        <h1 class="mx-auto my-0 text-uppercase">EDIT MECHANIC</h1>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <%=form_for @mechanic, :url => user_vehicle_mechanic_path(current_user, params["vehicle_id"], @mechanic)  do |f|%>
+    <%=f.hidden_field :id%>
+    <div>
+    <%=f.label :first_name%>
+    <%=f.text_field :first_name%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :last_name%>
+    <%=f.text_field :last_name%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :last_name%>
+    <%=f.text_field :last_name%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :phone_number%>
+    <%=f.text_field :phone_number%>
+    </div>
+    <br>
+    <div>
+    <%=f.label :shop_name%>
+    <%=f.text_field :shop_name%>
+    </div>
+    <br>
+    <%=f.submit "Update Mechanic"%>
+<% end %>
+        </h2>
+        <%unless @mechanic_errors == nil%>
+            <%@mechanic_errors.each do |error|%>
+                <h6><li>Mechanic's <%=error%></li></h6>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </body>
