@@ -68,19 +68,6 @@ class VehiclesController < ApplicationController
         end
     end
 
-    def find_or_create_mechanic_for_update_action
-        if @mechanic = Mechanic.find_by_id(vehicle_params["mechanic_id"])
-            @mechanic.update(vehicle_params["mechanic_attributes"])
-        else 
-            @mechanic = @vehicle.mechanic
-        end
-    end
-
-    def vehicle_mechanic_errors_for_update_action
-        @vehicle.update(vehicle_params) || @mechanic.update(vehicle_params["mechanic_attributes"])
-    end
-
-
     def authenticate_user_to_vehicle
         unless current_user.vehicles.ids.include?(params["id"].to_i)
             redirect_to user_path(current_user)
