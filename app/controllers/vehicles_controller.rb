@@ -43,7 +43,6 @@ class VehiclesController < ApplicationController
  
    def update
         @vehicle = Vehicle.find_by_id(params["id"])
-        @mechanic = @vehicle.mechanic 
         if @vehicle.update(vehicle_params)
             redirect_to user_vehicles_path(current_user)
         else
@@ -70,7 +69,7 @@ class VehiclesController < ApplicationController
 
     def authenticate_user_to_vehicle
         unless current_user.vehicles.ids.include?(params["id"].to_i)
-            redirect_to user_path(current_user)
+            redirect_to user_vehicles_path(current_user)
         end
     end
 
