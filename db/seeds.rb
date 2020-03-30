@@ -60,13 +60,13 @@ vehicle = Vehicle.create(make: "Chevrolet", model: "Tahoe", mileage: "102278", y
 
 vehicle = Vehicle.create(make: "Toyota", model: "Highlander", mileage: "10278", year: "2020", user_id: 3, mechanic_id: 11)
 
-vehicle = Vehicle.create(make: "GMC", model: "Sierra", mileage: "187193", year: "2004", user_id: 4, mechanic_id: 12)
+vehicle = Vehicle.create(make: "GMC", model: "Sierra", mileage: "187193", year: "2004", user_id: 2, mechanic_id: 12)
 
-vehicle = Vehicle.create(make: "Ford", model: "Ranger", mileage: "220468", year: "2001", user_id: 4, mechanic_id: 13)
+vehicle = Vehicle.create(make: "Ford", model: "Ranger", mileage: "220468", year: "2001", user_id: 1, mechanic_id: 13)
 
-vehicle = Vehicle.create(make: "Chevrolet", model: "Tahoe", mileage: "102278", year: "2012", user_id: 4, mechanic_id: 14)
+vehicle = Vehicle.create(make: "Chevrolet", model: "Tahoe", mileage: "102278", year: "2012", user_id: 3, mechanic_id: 14)
 
-vehicle = Vehicle.create(make: "Toyota", model: "Highlander", mileage: "10278", year: "2020", user_id: 5, mechanic_id: 15)
+vehicle = Vehicle.create(make: "Toyota", model: "Highlander", mileage: "10278", year: "2020", user_id: 2, mechanic_id: 15)
 
-vehicle = Vehicle.create(make: "GMC", model: "Sierra", mileage: "187193", year: "2004", user_id: 5, mechanic_id: 16)
+vehicle = Vehicle.create(make: "GMC", model: "Sierra", mileage: "187193", year: "2004", user_id: 1, mechanic_id: 16)
  

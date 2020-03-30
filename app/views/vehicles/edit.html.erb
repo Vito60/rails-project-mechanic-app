@@ -37,9 +37,9 @@
     <%unless @vehicle_errors == nil%>
         <%@vehicle_errors.each do |error|%>
         <%if error == "Mechanic must exist"%>
-            <h6><li>Mechanic must be selected or created in the form</li></h6>
+            <h6><li class="text-danger">Mechanic must be selected or created in the form</li></h6>
         <% else %>
-            <h6><li>Vehicle's <%=error%></li></h6>
+            <h6><li class="text-danger">Vehicle's <%=error%></li></h6>
         <% end %>
         <% end %>
     <% end %>

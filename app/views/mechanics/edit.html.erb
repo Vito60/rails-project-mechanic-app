@@ -30,7 +30,7 @@
         </h2>
         <%unless @mechanic_errors == nil%>
             <%@mechanic_errors.each do |error|%>
-                <h6><li>Mechanic's <%=error%></li></h6>
+                <h6><li class="text-danger">Mechanic's <%=error%></li></h6>
             <% end %>
         <% end %>
       </div>
